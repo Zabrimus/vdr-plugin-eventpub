@@ -1,0 +1,13 @@
+[Unit]
+Description=Markad
+After=network-online.target ntp.service
+
+[Service]
+PrivateTmp=true
+Type=simple
+ExecStart=/usr/local/bin/nats-receiver --server=nats://127.0.0.1:4222 --stream=vdrevents --subject="vdr.recording.stop.*" --script="/usr/local/bin/call-markad.sh" --durable=markad
+TimeoutStopSec=150
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

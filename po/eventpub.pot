@@ -1,0 +1,135 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the vdr-eventpub package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: vdr-eventpub 0.0.1\n"
+"Report-Msgid-Bugs-To: <see README>\n"
+"POT-Creation-Date: 2025-11-06 14:38+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Timer"
+msgstr ""
+
+msgid "Add timer event"
+msgstr ""
+
+msgid "TTL for add timer event (h)"
+msgstr ""
+
+msgid "Del timer event"
+msgstr ""
+
+msgid "TTL for Del timer event (h)"
+msgstr ""
+
+msgid "Channel switch"
+msgstr ""
+
+msgid "Channel switch event"
+msgstr ""
+
+msgid "TTL for Channel switch event (h)"
+msgstr ""
+
+msgid "Recording"
+msgstr ""
+
+msgid "Recording start event"
+msgstr ""
+
+msgid "TTL for recording start event (h)"
+msgstr ""
+
+msgid "Recording end event"
+msgstr ""
+
+msgid "TTL for recording end event (h)"
+msgstr ""
+
+msgid "Replay"
+msgstr ""
+
+msgid "Replay start event"
+msgstr ""
+
+msgid "TTL for replay start event (h)"
+msgstr ""
+
+msgid "Replay stop event"
+msgstr ""
+
+msgid "TTL for replay stop event (h)"
+msgstr ""
+
+msgid "Volume"
+msgstr ""
+
+msgid "Volume event"
+msgstr ""
+
+msgid "TTL for volume event (h)"
+msgstr ""
+
+msgid "Audio track"
+msgstr ""
+
+msgid "Audio track event"
+msgstr ""
+
+msgid "TTL for audio track event (h)"
+msgstr ""
+
+msgid "Audio Channel"
+msgstr ""
+
+msgid "Audio channel event"
+msgstr ""
+
+msgid "TTL for audio channel event (h)"
+msgstr ""
+
+msgid "Subtitle track"
+msgstr ""
+
+msgid "Subtitle track event"
+msgstr ""
+
+msgid "TTL for subtitle track event (h)"
+msgstr ""
+
+msgid "OSD title"
+msgstr ""
+
+msgid "OSD title event"
+msgstr ""
+
+msgid "TTL for OSD title event (h)"
+msgstr ""
+
+msgid "OSD status"
+msgstr ""
+
+msgid "OSD status message event"
+msgstr ""
+
+msgid "TTL for OSD status message event (h)"
+msgstr ""
+
+msgid "OSD channel"
+msgstr ""
+
+msgid "OSD channal event"
+msgstr ""
+
+msgid "TTL for OSD channal event (h)"
+msgstr ""

@@ -31,7 +31,8 @@ $(TARGET): $(OBJECTS)
 	$(CC) $(OBJECTS) -Wall $(LIBS) -o $@
 
 install: $(TARGET)
-	cp $(TARGET) /usr/local/bin
+	mkdir -p $(DESTDIR)/usr/local/bin
+	cp $(TARGET) $(DESTDIR)/usr/local/bin
 
 clean:
 	-rm -f *.o

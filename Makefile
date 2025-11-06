@@ -130,7 +130,10 @@ $(SOFILE): $(OBJS)
 install-lib: $(SOFILE)
 	install -D $^ $(DESTDIR)$(LIBDIR)/$^.$(APIVERSION)
 
-install: install-lib install-i18n nats-rec
+install-nats-rec: nats-rec
+	$(MAKE) -C nats-receiver install
+
+install: install-lib install-i18n install-nats-rec
 
 dist: $(I18Npo) clean
 	@-rm -rf $(TMPDIR)/$(ARCHIVE)

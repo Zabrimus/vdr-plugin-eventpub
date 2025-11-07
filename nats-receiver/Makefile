@@ -8,8 +8,6 @@ CFLAGS = -g -Wall -O3
 INCLUDES += $(if $(USE_LOCAL_NATS),$(shell PKG_CONFIG_PATH="../local_nats/lib/pkgconfig" pkg-config --cflags libnats),$(shell pkg_config --cflags libnats))
 LIBS = $(if $(USE_LOCAL_NATS),$(shell PKG_CONFIG_PATH="../local_nats/lib/pkgconfig" pkg-config --libs libnats),$(shell pkg_config --libs libnats))
 
-LIBS += -lstdc++
-
 .PHONY: default all clean
 
 default: $(TARGET)
@@ -23,12 +21,12 @@ OBJECTS += tiny-process/process.o tiny-process/process_unix.o
 CFLAGS += -Itiny-process
 
 %.o: %.cpp $(HEADERS)
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CXX) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 .PRECIOUS: $(TARGET) $(OBJECTS)
 
 $(TARGET): $(OBJECTS)
-	$(CC) $(OBJECTS) -Wall $(LIBS) -o $@
+	$(CXX) $(OBJECTS) -Wall $(LIBS) -lstdc++ -lc -pthread -o $@
 
 install: $(TARGET)
 	mkdir -p $(DESTDIR)/usr/local/bin

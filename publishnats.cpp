@@ -212,8 +212,10 @@ natsStatus PublishNats::sendMessageJs(const std::string& subject, const std::str
         return status;
     }
 
-    // set ttl nats header (c-api has problems with higher ttl values)
-    status = natsMsgHeader_Set(msg, "Nats-TTL", (std::to_string(ttl) + "h0m0s").c_str());
+    if (ttl > 0) {
+        // set ttl nats header (c-api has problems with higher ttl values)
+        status = natsMsgHeader_Set(msg, "Nats-TTL", (std::to_string(ttl) + "h0m0s").c_str());
+    }
     status = js_PublishMsg(&pa, js, msg, nullptr, &jerr);
 
     if (status == NATS_OK) {

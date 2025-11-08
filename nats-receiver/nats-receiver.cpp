@@ -158,8 +158,41 @@ int main(int argc, char *argv[]) {
         exit(1);
     }
 
+    // Check if the stream already exists.
+    jsStreamInfo *si = nullptr;
+    status = js_GetStreamInfo(&si, js, stream.c_str(), nullptr, &jerr);
+
+    if (status == NATS_NOT_FOUND) {
+        jsStreamConfig cfg;
+
+        // Initialize the configuration structure.
+        jsStreamConfig_Init(&cfg);
+        cfg.Name = stream.c_str();
+
+        // Set the subject
+        const char *subjects[1];
+        subjects[0] = &subject.c_str()[0];
+
+        cfg.Subjects = &subjects[0];
+
+        // Set the subject count
+        cfg.SubjectsLen = 1;
+
+        // get ack from server
+        cfg.NoAck = false;
+
+        // allow TTL per message
+        cfg.AllowMsgTTL = true;
+
+        // Add the stream,
+        status = js_AddStream(&si, js, &cfg, nullptr, &jerr);
+        fprintf(stderr, "Add Stream: %u - %s - jerr %d\n", status, natsStatus_GetText(status), (int)jerr);
+
+        jsStreamInfo_Destroy(si);
+    }
+
     if ((status = js_PullSubscribe(&sub, js, subject.c_str(), durableName.empty() ? nullptr : durableName.c_str(), &jsOpts, &so, &jerr)) != NATS_OK) {
-        fprintf(stderr, "Error create pull subscriber: %u - %s\n", status, natsStatus_GetText(status));
+        fprintf(stderr, "Error create pull subscriber: %u - %s - jerr %d\n", status, natsStatus_GetText(status), (int)jerr);
         exit(1);
     }
 

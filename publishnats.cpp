@@ -181,6 +181,10 @@ natsStatus PublishNats::connect() {
         status = js_UpdateStream(&si, js, &cfg, nullptr, &jerr);
     }
 
+    if (status != NATS_OK) {
+        esyslog("[eventpub] js_AddStream/js_UpdateStream: %u - %s - jerr %d\n", status, natsStatus_GetText(status), (int)jerr);
+    }
+
     jsStreamInfo_Destroy(si);
 
     return status;
@@ -221,7 +225,7 @@ natsStatus PublishNats::sendMessageJs(const std::string& subject, const std::str
     if (status == NATS_OK) {
         jsPubAck_Destroy(pa);
     } else {
-        esyslog("[eventpub] js_PublishMsg: %u - %s\n", status, natsStatus_GetText(status));
+        esyslog("[eventpub] js_PublishMsg: %u - %s - jerr %d\n", status, natsStatus_GetText(status), (int)jerr);
     }
 
     natsMsg_Destroy(msg);

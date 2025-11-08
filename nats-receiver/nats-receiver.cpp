@@ -224,7 +224,7 @@ int main(int argc, char *argv[]) {
             fprintf(stderr, "No more messages are available. Exit.\n");
             exit(0);
         } else if (status != NATS_OK) {
-            fprintf(stderr, "Error fetching message: %u - %s\n", status, natsStatus_GetText(status));
+            fprintf(stderr, "Error fetching message: %u - %s - jerr %d\n", status, natsStatus_GetText(status), (int)jerr);
 
             // TODO: Exists there more possible errors which needs to be handled?
             std::this_thread::sleep_for(std::chrono::milliseconds(10000));

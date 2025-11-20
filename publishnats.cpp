@@ -199,15 +199,6 @@ natsStatus PublishNats::sendMessageJs(const std::string& subject, const std::str
     jsErrCode jerr = static_cast<jsErrCode>(0);
     jsPubAck *pa = nullptr;
 
-    jsPubOptions options;
-
-    /*
-    if (ttl > 0) {
-        jsPubOptions_Init(&options);
-        options.MsgTTL = 1000 * 60 * 60 * ttl; // MsgTTL in ms
-    }
-    */
-
     natsMsg *msg = nullptr;
     status = natsMsg_Create(&msg, subject.c_str(), nullptr, payload.c_str(), (int)payload.length());
 

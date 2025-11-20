@@ -1,0 +1,4 @@
+If you want to use nats-object receiver a self-compiled nats.c library is currently mandatory.
+The patch nats.c.objectstore.patch comes from
+    https://github.com/nats-io/nats.c/pull/934
+    https://github.com/nats-io/nats.c/issues/933

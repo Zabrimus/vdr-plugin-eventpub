@@ -1,0 +1,35 @@
+The sanple script upgrades.sh will be called, if nats-object received a new file in the NATS ObjectStore.
+The script itself checks if a channels.conf or a VDR*STERN release tar has been received and do the following.
+
+This makes it possible to trigger an update although the system is down. After the next startup all files will be
+loaded and the upgrade will be prepared.
+
+channels.conf:
+Copy channels.conf to /storage/.config/vdropt/channels.conf and restart VDR if it's running.
+VDR starts with the new channels.conf
+
+Release upgrade tar:
+The release tar will be copied to /storage/.update - if necessary.
+
+My personal setup:
+I have multiple different object stores defined
+- vdrupdate-client1 (for channels.conf and release tar)
+- vdrupdate-client2 (for channels.conf and release tar)
+- vdrupdate-server1 (for channels.conf)
+- vdrupdate-server2 (for channels.conf)
+- vdrupdate-server3 (for channels.conf)
+- vdrupdate-all     (for channels.conf)
+
+All systems watches their own object store and additionally the object store vdrupdate-all.
+This makes it possible to update only specific systems and in case of vdrupdate-all,
+all systems will read the new channels.conf.
+
+An object watcher can be started with:
+nats-object --server=nats://127.0.0.1:4222 --store=vdrupdate-client1 --directory=/tmp --script=/storage/.config/upgrades.sh
+nats-object --server=nats://127.0.0.1:4222 --store=vdrupdate-all --directory=/tmp --script=/storage/.config/upgrades.sh
+
+An update of all channels.conf in all configured VDR server and clients be triggered via nats CLI:
+nats object put new-channels.conf vdrupdate-all --name="channels/channels.conf"
+
+A new release in one client can be triggered via nats CLI:
+nats object put CE-Amlogic-ng.arm--21.3-VDR-1114.tar vdrupdate-client1

@@ -35,6 +35,8 @@ TMPDIR ?= /tmp
 export CFLAGS   = $(call PKGCFG,cflags)
 export CXXFLAGS = $(call PKGCFG,cxxflags)
 
+CFLAGS+=-g
+
 ### The version number of VDR's plugin API:
 
 APIVERSION = $(call PKGCFG,apiversion)
@@ -72,7 +74,7 @@ OBJS = $(PLUGIN).o eventstatus.o publishnats.o natsconfig.o menusetupevent.o eve
 
 ### The main target:
 
-all: $(SOFILE) i18n nats-rec
+all: $(SOFILE) i18n nats-rec # nats
 
 ### Implicit rules:
 
@@ -119,6 +121,9 @@ i18n: $(I18Nmo) $(I18Npot)
 install-i18n: $(I18Nmsgs)
 
 ### Targets:
+
+# nats:
+#	$(MAKE) -C thirdparty/nats.c-3.11.0/build
 
 nats-rec:
 	$(MAKE) -C nats-receiver

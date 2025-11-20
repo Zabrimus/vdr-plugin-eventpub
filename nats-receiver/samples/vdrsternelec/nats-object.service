@@ -1,0 +1,13 @@
+[Unit]
+Description=Start a nats-object service
+After=network-online.target ntp.service
+
+[Service]
+PrivateTmp=true
+Type=simple
+ExecStart=/usr/local/bin/nats-object --server=nats://127.0.0.1:4222 --store=vdrupdate-client1 --directory=/tmp --script=/storage/.config/upgrades.sh
+TimeoutStopSec=150
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

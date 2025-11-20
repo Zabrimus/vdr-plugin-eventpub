@@ -18,6 +18,6 @@ wget  https://github.com/nats-io/nats.c/archive/refs/tags/v${VERSION}.tar.gz -O 
 cd nats.c-${VERSION}
 mkdir -p build
 cd build
-cmake .. -DNATS_BUILD_WITH_TLS=ON -DNATS_BUILD_USE_SODIUM=ON -DCMAKE_INSTALL_PREFIX=${CURDIR}/local_nats -DPOSITION_INDEPENDENT_CODE=ON
+cmake .. -DCMAKE_BUILD_TYPE=Debug -DNATS_BUILD_WITH_TLS=ON -DNATS_BUILD_USE_SODIUM=ON -DCMAKE_INSTALL_PREFIX=${CURDIR}/local_nats -DPOSITION_INDEPENDENT_CODE=ON
 
 make -j && make install
